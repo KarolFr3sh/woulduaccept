@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Would u Accept</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ff272e 0%, #244cff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        #inicio, #pregunta, #gif {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: calc(100% - 34px);
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 10px;
+            background-color: #61e7ff;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4578e6;
+            transform: scale(1.05);
+        }
+
+        #btnNo {
+            position: absolute;
+        }
+
+        #gif img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="inicio">
+        <h2>¿Cuál es tu nombre?</h2>
+        <input type="text" id="nombre" placeholder="Escribe tu nombre">
+        <button onclick="mostrarPregunta()">Enviar</button>
+    </div>
+
+    <div id="pregunta" style="display: none;">
+        <h2 id="preguntaNombre"></h2>
+        <button onclick="respuestaSi()">Sí</button>
+        <button id="btnNo" onmouseover="moverBoton()">No</button>
+    </div>
+
+    <div id="gif" style="display: none;">
+        <h2>Así no porque me sonrojo, bell@</h2>
+        <img src="https://i.pinimg.com/736x/09/d2/48/09d2483882cb9999df7bf4b4b9a594db.jpg" alt="Felicidades">
+    </div>
+
+    <script>
+        function mostrarPregunta() {
+            const nombre = document.getElementById("nombre").value;
+            if (nombre) {
+                document.getElementById("inicio").style.display = "none";
+                document.getElementById("preguntaNombre").innerText = nombre + ", ¿quieres ser la pareja de Karol?";
+                document.getElementById("pregunta").style.display = "block";
+            } else {
+                alert("Por favor, ingresa tu nombre.");
+            }
+        }
+
+        function respuestaSi() {
+            document.getElementById("pregunta").style.display = "none";
+            document.getElementById("gif").style.display = "block";
+        }
+
+        function respuesta(respuesta) {
+            alert("Elegiste " + respuesta);
+        }
+
+        function moverBoton() {
+            const boton = document.getElementById("btnNo");
+            const x = Math.random() * (window.innerWidth - boton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - boton.offsetHeight);
+            boton.style.left = x + "px";
+            boton.style.top = y + "px";
+        }
+    </script>
+</body>
+</html>
